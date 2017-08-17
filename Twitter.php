@@ -775,7 +775,7 @@ class Twitter
      */
     public function statusesUserTimeline(
         $userId = null, $screenName = null, $sinceId = null, $count = null,
-        $maxId = null, $trimUser = null, $excludeReplies = null,
+        $tweetMode = 'extended', $maxId = null, $trimUser = null, $excludeReplies = null,
         $contributorDetails = null, $includeRts = null
     )
     {
@@ -813,6 +813,9 @@ class Twitter
         if ($includeRts !== null) {
             $parameters['include_rts'] = ($includeRts) ? 'true' : 'false';
         }
+        if ($tweetMode !== null) {
+            $parameters['tweet_mode'] = $tweetMode;
+        }        
 
         // make the call
         return $this->doCall(
